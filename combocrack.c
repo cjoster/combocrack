@@ -51,8 +51,8 @@
 /*                                                                       */
 /* The author makes no suggestion that this is the most efficient way    */
 /* to brute-force a full-mesh directed acyclic graph, only that this     */
-/* program produces the optimal button sequence in as few seq sequences  */
-/* as possible.                                                          */
+/* program produces the optimal button sequence in as few sequences as   */
+/* possible.                                                             */
 /*                                                                       */
 /*  *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
 /*                                                                       */
@@ -155,7 +155,6 @@ static char *buttons = NULL;        /* To hold valid buttons             */
 /* Our data structure */
 static int ncombs = -1;
 static comb_t *combs = NULL;
-//static unsigned long sequence_no = 0;
 static unsigned long sequence_no = 1;
 
 /* Quick hack so that verbose will prepend # only to lines that follow   */
@@ -167,7 +166,7 @@ static char output_buff[8192];
 static int buffsize = 0;
 
 /*************************************************************************/
-/***************************** DECLERATIONS ******************************/
+/***************************** DECLARATIONS ******************************/
 /*************************************************************************/
 
 static void *mmalloc( size_t s );
@@ -185,12 +184,12 @@ static void genDAG( void );
 static void dumpDAG( void );
 static void crackDAG( comb_t *c, const char *parent );
 static int bufferOutput( const char *fmt, ... );
-void endSequence( void );
+static void endSequence( void );
 static int allVisited( int output );
 static const char *basename( const char *in );
 static void usage( const char *p, int ret );
-int numcheck( const char *arg );
-void checkarg( const char *arg, char opt, const char *name );
+static int numcheck( const char *arg );
+static void checkarg( const char *arg, char opt, const char *name );
 
 /*************************************************************************/
 /****************************** FUNCTIONS ********************************/
@@ -940,7 +939,7 @@ static void usage( const char *me, int ret ) {
 /*                                                                       */
 /*************************************************************************/
 
-int numcheck( const char *arg ) {
+static int numcheck( const char *arg ) {
 
     int i;
 
@@ -970,7 +969,7 @@ int numcheck( const char *arg ) {
 /*                                                                       */
 /*************************************************************************/
 
-void checkarg( const char *arg, char opt, const char *name ) {
+static void checkarg( const char *arg, char opt, const char *name ) {
     if( !numcheck(arg) ) {
         fprintf(stderr,"Error: Option \"%c\" requires a positive integer"
             " argument.\n", opt);
